@@ -46,7 +46,7 @@ public class Server {
             }
         });
 
-        Thread stream_2 = new Thread(new Runnable() {
+        Thread stream2 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -65,13 +65,11 @@ public class Server {
             }
         });
         stream1.start();
-        stream_2.start();
+        stream2.setDaemon(true);
+        stream2.start();
 
         try {
             stream1.join();
-            stream_2.interrupt();
-            stream_2.join();
-
             soket.close();
             serverSocket.close();
             finalSoket.close();

@@ -56,12 +56,11 @@ public class Client {
             }
         });
         stream1.start();
+        stream2.setDaemon(true);
         stream2.start();
 
         try {
             stream1.join();
-            stream2.interrupt();
-            stream2.join();
             socket.close();
 
         } catch (InterruptedException e) {
