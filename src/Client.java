@@ -6,12 +6,14 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
+        final String IP_ADDRESS = "localhost";
+        final int PORT = 8189;
         Socket socket = null;
         Scanner sc = new Scanner(System.in);
         DataInputStream in = null;
         DataOutputStream out = null;
         try {
-            socket = new Socket("localhost", 8189);
+            socket = new Socket(IP_ADDRESS, PORT);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
@@ -54,12 +56,11 @@ public class Client {
             }
         });
         stream1.start();
+        stream2.setDaemon(true);
         stream2.start();
 
         try {
             stream1.join();
-            stream2.interrupt();
-            stream2.join();
             socket.close();
 
         } catch (InterruptedException e) {
