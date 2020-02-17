@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 public class Server {
     public static void main(String[] args) {
+        final int PORT = 8189;
         Socket soket = null;
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(8189);
+            serverSocket = new ServerSocket(PORT);
             System.out.println("Сервер запущен ожидаем подключения...");
             soket = serverSocket.accept();
             System.out.println("Клиент подключился!");
